@@ -1,12 +1,13 @@
-import { Text, View } from "react-native";
-import "./global.css";
+import { useRouter } from "expo-router";
+import { useEffect } from "react";
+import { View } from "react-native";
 
 export default function Index() {
-  return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text className="text-white font-urbanist-bold text-xl">
-        Début du projet MySubs (page abonnements)
-      </Text>
-    </View>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/(tabs)/");
+  }, []);
+
+  return <View />;
 }
