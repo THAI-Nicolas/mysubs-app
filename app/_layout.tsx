@@ -1,6 +1,7 @@
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
-import { Text, View } from "react-native";
+import { SafeAreaView, Text, View } from "react-native";
+import Header from "../components/Header";
 import "./global.css";
 
 export default function RootLayout() {
@@ -19,5 +20,13 @@ export default function RootLayout() {
     );
   }
 
-  return <Stack />;
+  return (
+    <SafeAreaView className="flex-1 bg-white">
+      <Header
+        title="Abonnements"
+        onSettingsPress={() => console.log("Settings pressed")}
+      />
+      <Stack screenOptions={{ headerShown: false }} />
+    </SafeAreaView>
+  );
 }

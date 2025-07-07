@@ -11,6 +11,7 @@ module.exports = {
         dark: "#030F20",
         "light-blue": "#B1D4E0",
         gray: "#D9D9D9",
+        "dark-light": "#506179",
       },
       fontFamily: {
         urbanist: ["Urbanist-Regular", "sans-serif"],
