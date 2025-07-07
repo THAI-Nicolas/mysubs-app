@@ -1,0 +1,85 @@
+# MySubs – Project Context for Cursor AI
+
+## 🧠 1. Project Overview
+
+**MySubs** is a cross-platform mobile app (Android/iOS) built with React Native and Expo. It helps users manage all their recurring subscriptions in one place, avoiding surprise charges and improving budget control.
+
+The app was initiated as a serious solo project after the first year of university, combining development skills with a real-world problem: subscription overload.
+
+## 🎯 2. Target Audience
+
+- 🎓 **Students**: Low budgets, poor financial habits, high digital consumption.
+- 🧑‍💼 **Young adults (20–30)**: Growing number of personal/professional subscriptions.
+- 👨‍👩‍👧‍👦 **Families**: Shared plans, need for multi-profile management.
+
+## ⚙️ 3. Key Features
+
+- Manual and automatic subscription management (email/bank APIs)
+- Pre-payment push notifications
+- List and calendar view of all subscriptions
+- Monthly, annual, and category-based totals
+- Category customization
+- Multi-profile support (Duo, Family)
+- Stats: top 3 most expensive, trends, category breakdowns
+- Floating Action Button (FAB) on every screen for adding subscriptions
+- Settings screen with theme, language, plan info, etc.
+
+## 🧭 App Structure & UX (no design details)
+
+- Bottom tab bar with 3 screens:
+  - 📋 **Subscriptions**: List of active/cancelled subs, with filters and edit/delete options.
+  - 📆 **Calendar**: Monthly view with icons on payment days and payment history below.
+  - 📊 **Expenses**: Monthly/yearly summaries with breakdown by category.
+
+Each screen has:
+
+- A **header** with:
+
+  - MySubs logo (left)
+  - Title (center)
+  - Settings icon (right)
+
+- A **FAB** button to open a modal (add subscription manually or automatically)
+
+## 💸 4. Monetization Model
+
+**Freemium with one-time purchases only (no subscriptions)**
+
+- Free plan: 7 subscriptions max, 5 categories, 1 profile, manual only
+- Paid packs:
+  - Unlimited subscriptions
+  - Unlimited categories
+  - Duo (2 profiles)
+  - Family (up to 5 profiles)
+  - Auto detection via bank
+  - All-in-one pack (best deal)
+
+## 🧩 5. Technical Stack
+
+- **Frontend**: React Native with Expo (Android first)
+- **Launch**: Only via `npm run android` (no iOS testing during dev)
+- **UI**: NativeWind (Tailwind CSS for RN) — _developer handles installation manually_
+- **Backend**: Supabase (Auth, Database, Storage, RLS)
+- **State**: Zustand or Context API
+- **Push notifications**: Expo Notifications
+
+## 📐 6. App Architecture Overview
+
+- **Pages**: subscriptions, calendar, expenses, settings
+- **Components**: FAB, subscription card, filter bar, header
+- **Modals**: Add subscription (manual/automatic)
+
+## 🚫 7. Boundaries for Claude / Cursor
+
+❌ Do not assume any design or UI styles unless explicitly described.  
+❌ Do not create or name database tables/columns unless asked step-by-step.  
+❌ Do not suggest new features unless requested.  
+✅ Only act on structured instructions provided progressively.
+
+## ✅ 8. What the AI is allowed to do
+
+✅ Generate React Native components using NativeWind classes  
+✅ Suggest UI structure based on UX layout above  
+✅ Propose RLS policies for Supabase  
+✅ Cleanly separate logic / UI / services  
+✅ Help structure modular, maintainable code
