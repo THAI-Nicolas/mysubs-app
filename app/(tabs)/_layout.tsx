@@ -1,6 +1,7 @@
 import { Tabs, useRouter } from "expo-router";
 import { useState } from "react";
 import { View } from "react-native";
+import FAB from "../../components/FAB";
 import Header from "../../components/Header";
 import TabBar, { TabType } from "../../components/TabBar";
 
@@ -15,6 +16,11 @@ export default function TabLayout() {
       expenses: "Dépenses",
     };
     return titles[activeTab];
+  };
+
+  const handleFABPress = () => {
+    console.log("FAB pressed - Opening add subscription modal");
+    // TODO: Ouvrir le modal d'ajout d'abonnement
   };
 
   return (
@@ -81,6 +87,9 @@ export default function TabLayout() {
         <Tabs.Screen name="calendar" />
         <Tabs.Screen name="expenses" />
       </Tabs>
+
+      {/* FAB flottant au-dessus de la TabBar */}
+      <FAB onPress={handleFABPress} />
     </View>
   );
 }
