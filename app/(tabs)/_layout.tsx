@@ -1,12 +1,12 @@
-import { Tabs, usePathname } from "expo-router";
-import { useEffect, useState } from "react";
+import { Tabs, useRouter } from "expo-router";
+import { useState } from "react";
 import { View } from "react-native";
 import Header from "../../components/Header";
 import TabBar, { TabType } from "../../components/TabBar";
 
 export default function TabLayout() {
-  const [currentTab, setCurrentTab] = useState<TabType>("subscriptions");
-  const pathname = usePathname();
+  const [currentTitle, setCurrentTitle] = useState("Abonnements");
+  const router = useRouter();
 
   const getPageTitle = (activeTab: TabType): string => {
     const titles: Record<TabType, string> = {
@@ -17,28 +17,34 @@ export default function TabLayout() {
     return titles[activeTab];
   };
 
-  useEffect(() => {
-    const pathToTab: Record<string, TabType> = {
-      "/": "subscriptions",
-      "/(tabs)": "subscriptions",
-      "/(tabs)/": "subscriptions",
-      "/(tabs)/calendar": "calendar",
-      "/(tabs)/expenses": "expenses",
-    };
-
-    const newTab = pathToTab[pathname] || "subscriptions";
-    setCurrentTab(newTab);
-  }, [pathname]);
-
   return (
     <View className="flex-1 bg-white">
       <Header
-        title={getPageTitle(currentTab)}
+        title={currentTitle}
         onSettingsPress={() => console.log("Settings pressed")}
       />
       <Tabs
         screenOptions={{
           headerShown: false,
+        }}
+        screenListeners={{
+          state: (e) => {
+            if (e.data && e.data.state) {
+              const routes = e.data.state.routes;
+              const index = e.data.state.index;
+              const activeRoute = routes[index];
+
+              const routeNames: Record<string, TabType> = {
+                index: "subscriptions",
+                calendar: "calendar",
+                expenses: "expenses",
+              };
+
+              const activeTab = routeNames[activeRoute.name] || "subscriptions";
+              const newTitle = getPageTitle(activeTab);
+              setCurrentTitle(newTitle);
+            }
+          },
         }}
         tabBar={(props) => {
           const routeNames: Record<string, TabType> = {
