@@ -1,17 +1,24 @@
 import React from "react";
 import { ScrollView, Text, View } from "react-native";
+import SubscriptionCard from "../../components/subscriptions/SubscriptionsCard";
+import { mockSubscriptions } from "../../data/mockSubscriptions";
 
 export default function SubscriptionsScreen() {
   return (
-    <ScrollView className="flex-1 bg-white">
-      <View className="p-4">
-        <Text className="text-2xl font-urbanist-bold text-dark mb-4">
+    <View className="flex-1 bg-white">
+      <ScrollView className="flex-1 px-4 py-4">
+        <Text className="text-primary font-urbanist-bold text-xl mb-4">
           Mes Abonnements
         </Text>
-        <Text className="text-gray font-urbanist-medium">
-          Ici s'afficheront tous vos abonnements...
-        </Text>
-      </View>
-    </ScrollView>
+
+        {mockSubscriptions.map((subscription) => (
+          <SubscriptionCard
+            key={subscription.id}
+            subscription={subscription}
+            onPress={(sub) => console.log("Pressed:", sub.name)}
+          />
+        ))}
+      </ScrollView>
+    </View>
   );
 }
